@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pharonic/home.dart';
 
 import 'login.dart';
 
@@ -248,7 +249,7 @@ class Register extends StatelessWidget {
                                 );
 
                                 Navigator.of(context)
-                                    .pushReplacementNamed("Home");
+                                    .pushReplacementNamed(Home.pageId);
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'weak-password') {
                                   print('The password provided is too weak.');

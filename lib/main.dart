@@ -3,20 +3,19 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:pharonic/home.dart';
 
 import 'started.dart';
+
+// Import the generated file
+import 'firebase_options.dart';
 
 Future main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  Platform.isAndroid
-      ? await Firebase.initializeApp(
-          options: const FirebaseOptions(
-              apiKey: 'AIzaSyCUlDWw7oi08VbrhoJshtxkOZ-42i-67lU',
-              appId: '1:328655777541:android:85389ea53e987b1233916c',
-              messagingSenderId: '328655777541',
-              projectId: 'test12-ca0d5'))
-      : await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -46,8 +45,12 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      routes: {
+        Home.pageId: (context) => Home(),
+      },
       debugShowCheckedModeBanner: false,
       home: Started(),
+      // home: Home(),
     );
   }
 }
