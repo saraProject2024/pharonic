@@ -3,7 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:image_card/image_card.dart';
 
 import '../abu_simple.dart';
-import 'favourite.dart';
+import 'favorites/favourite.dart';
 import 'grandegyption_museum.dart';
 import 'home.dart';
 import 'pyramids.dart';
@@ -11,8 +11,6 @@ import 'scaninng.dart';
 import 'search.dart';
 import 'started.dart';
 import 'templet.dart';
-
-
 
 class History extends StatelessWidget {
   final TextEditingController _searchController = TextEditingController();
@@ -28,29 +26,28 @@ class History extends StatelessWidget {
                 fontSize: 25.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
-
               )),
           centerTitle: true,
           actions: [
             PopupMenuButton(
-              // add icon, by default "3 dot" icon
-              // icon: Icon(Icons.book)
+                // add icon, by default "3 dot" icon
+                // icon: Icon(Icons.book)
                 itemBuilder: (context) {
-                  return [
-                    const PopupMenuItem<int>(
-                      value: 0,
-                      child: Text("Favourite page"),
-                    ),
-                    const PopupMenuItem<int>(
-                      value: 1,
-                      child: Text("History page"),
-                    ),
-                    const PopupMenuItem<int>(
-                      value: 2,
-                      child: Text("Logout"),
-                    ),
-                  ];
-                }, onSelected: (value) {
+              return [
+                const PopupMenuItem<int>(
+                  value: 0,
+                  child: Text("Favourite page"),
+                ),
+                const PopupMenuItem<int>(
+                  value: 1,
+                  child: Text("History page"),
+                ),
+                const PopupMenuItem<int>(
+                  value: 2,
+                  child: Text("Logout"),
+                ),
+              ];
+            }, onSelected: (value) {
               if (value == 0) {
                 {
                   Navigator.push(
@@ -168,7 +165,8 @@ class History extends StatelessWidget {
                               ),
                               IconButton(
                                 color: Colors.black,
-                                icon: const Icon(Icons.favorite_outline_outlined),
+                                icon:
+                                    const Icon(Icons.favorite_outline_outlined),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -226,12 +224,13 @@ class History extends StatelessWidget {
                               ),
                               IconButton(
                                 color: Colors.black,
-                                icon: const Icon(Icons.favorite_outline_outlined),
+                                icon:
+                                    const Icon(Icons.favorite_outline_outlined),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>  Abusimbel()),
+                                        builder: (context) => Abusimbel()),
                                   );
                                 },
                               ),
@@ -284,7 +283,8 @@ class History extends StatelessWidget {
                               ),
                               IconButton(
                                 color: Colors.black,
-                                icon: const Icon(Icons.favorite_outline_outlined),
+                                icon:
+                                    const Icon(Icons.favorite_outline_outlined),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
@@ -342,13 +342,14 @@ class History extends StatelessWidget {
                               ),
                               IconButton(
                                 color: Colors.black,
-                                icon: const Icon(Icons.favorite_outline_outlined),
+                                icon:
+                                    const Icon(Icons.favorite_outline_outlined),
                                 onPressed: () {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                        const grandegyptianmuseum()),
+                                            const grandegyptianmuseum()),
                                   );
                                 },
                               ),
@@ -447,7 +448,8 @@ class History extends StatelessWidget {
                                     Navigator.push(
                                       context,
                                       MaterialPageRoute(
-                                          builder: (context) => const Scaning()),
+                                          builder: (context) =>
+                                              const Scaning()),
                                     );
                                   },
                                 ),

@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pharonic/home.dart';
+import 'package:pharonic/services/firebase_service.dart';
 
 import 'started.dart';
 
@@ -29,6 +30,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   void initState() {
+    FirebaseService.getFav();
     FirebaseAuth.instance.authStateChanges().listen((User? user) {
       if (user == null) {
         print('=======================User is currently signed out!');

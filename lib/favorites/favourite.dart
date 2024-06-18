@@ -1,26 +1,22 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pharonic/PlaceDetails/place_details.dart';
-import 'package:pharonic/models/place_model.dart';
+import 'package:image_card/image_card.dart';
 import 'package:pharonic/services/firebase_service.dart';
 
-import 'favorites/favourite.dart';
-import 'history.dart';
-import 'home.dart';
+import '../../abu_simple.dart';
+import '../grandegyption_museum.dart';
+import '../history.dart';
+import '../home.dart';
+import '../pyramids.dart';
 import '../scaninng.dart';
-import 'started.dart';
+import '../search.dart';
+import '../started.dart';
+import '../templet.dart';
+import 'widgets/favorites_list.dart';
 
-class Search extends StatefulWidget {
-  Search({super.key});
-
-  @override
-  State<Search> createState() => _SearchState();
-}
-
-class _SearchState extends State<Search> {
-  final TextEditingController _searchController = TextEditingController();
-
-  List<PlaceModel> places = [];
+class favourite extends StatelessWidget {
+  favourite({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -104,14 +100,15 @@ class _SearchState extends State<Search> {
                         width: 100.0,
                       ),
                       const Icon(
-                        Icons.search_outlined,
+                        Icons.favorite_outline,
                         size: 30.0,
                         color: Colors.white,
                       ),
-                      const SizedBox(width: 10.0),
-                      // Add some spacing between icon and text
+                      const SizedBox(
+                          width:
+                              10.0), // Add some spacing between icon and text
                       Text(
-                        "search",
+                        "favorites",
                         style: GoogleFonts.oxanium(
                           fontSize: 35.0,
                           fontWeight: FontWeight.bold,
@@ -122,55 +119,12 @@ class _SearchState extends State<Search> {
                   ),
                 ),
                 const SizedBox(
-                  height: 20.0,
-                ),
-                Container(
-                  width: 400.0,
-                  height: 90.0,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15.0),
-                    color: Colors.white,
-                  ),
-                  padding: const EdgeInsets.fromLTRB(0.0, 5.0, 0, 5.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(9.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20.0),
-                        color: Colors.white,
-                      ),
-
-                      // Add padding around the search bar
-                      // Use a Material design search bar
-                      child: TextField(
-                        controller: _searchController,
-                        decoration: InputDecoration(
-                          hintText: 'Search result...',
-                          // Add a clear button to the search bar
-
-                          // Add a search icon or button to the search bar
-                          prefixIcon: IconButton(
-                            color: Colors.black,
-                            icon: const Icon(Icons.search),
-                            onPressed: () async {
-                              places = await FirebaseService()
-                                  .searchPlaceByTitle(_searchController.text);
-                              setState(() {});
-                            },
-                          ),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
+                  height: 40.0,
                 ),
                 Expanded(
-                  child: SearchResultList(
-                    items: places,
-                  ),
-                ),
+                    child: FavoritesList(
+                  placeIds: FirebaseService.favouritePlaces,
+                )),
                 Container(
                   width: 380.0,
                   height: 75.0,
@@ -309,69 +263,5 @@ class _SearchState extends State<Search> {
         ),
       ),
     );
-  }
-}
-
-class SearchResultList extends StatelessWidget {
-  final List<PlaceModel> items;
-
-  const SearchResultList({super.key, required this.items});
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, idx) {
-          return GestureDetector(
-            onTap: () {
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (
-                    context,
-                  ) =>
-                      PlaceDetailView(place: items[idx]),
-                ),
-              );
-            },
-            child: Container(
-              margin: EdgeInsets.all(14),
-              width: double.infinity,
-              height: 100,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  gradient: LinearGradient(colors: [
-                    Colors.amber.withOpacity(0.6),
-                    Colors.transparent,
-                    Colors.amber.withOpacity(0.5),
-                  ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.circular(12),
-                      child: Image.network(
-                        items[idx].image,
-                        height: 80,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    Text(
-                      items[idx].title,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          );
-        });
   }
 }

@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pharonic/home.dart';
+import 'package:pharonic/services/firebase_service.dart';
 
 import 'login.dart';
 
@@ -247,6 +248,9 @@ class Register extends StatelessWidget {
                                   email: emailAddress.text,
                                   password: passwordcontroller.text,
                                 );
+
+                                FirebaseService.createUserDoc(firstname.text,
+                                    lastname.text, emailAddress.text);
 
                                 Navigator.of(context)
                                     .pushReplacementNamed(Home.pageId);

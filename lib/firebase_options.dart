@@ -25,15 +25,9 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for windows - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return windows;
       case TargetPlatform.linux:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for linux - '
@@ -75,4 +69,26 @@ class DefaultFirebaseOptions {
     storageBucket: 'phraraonic.appspot.com',
     iosBundleId: 'com.example.pharonic',
   );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBiwJsWr-zzFfpvvsDoHaucuj9CZfOJfKg',
+    appId: '1:42016626917:ios:d6cee2dfb47cf8b7d99c0c',
+    messagingSenderId: '42016626917',
+    projectId: 'phraraonic',
+    databaseURL: 'https://phraraonic-default-rtdb.firebaseio.com',
+    storageBucket: 'phraraonic.appspot.com',
+    iosBundleId: 'com.example.pharonic',
+  );
+
+  static const FirebaseOptions windows = FirebaseOptions(
+    apiKey: 'AIzaSyCz5zXSY7cTgscD4ZrYzKzWgs49_Xn6eXQ',
+    appId: '1:42016626917:web:7b58279b06cb4b44d99c0c',
+    messagingSenderId: '42016626917',
+    projectId: 'phraraonic',
+    authDomain: 'phraraonic.firebaseapp.com',
+    databaseURL: 'https://phraraonic-default-rtdb.firebaseio.com',
+    storageBucket: 'phraraonic.appspot.com',
+    measurementId: 'G-HW9CXL6VP3',
+  );
+
 }

@@ -1,14 +1,12 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'favourite.dart';
+import 'favorites/favourite.dart';
 import 'history.dart';
 import 'home.dart';
 import 'scaninng.dart';
 import 'search.dart';
 import 'started.dart';
-
 
 class grandegyptianmuseum extends StatelessWidget {
   const grandegyptianmuseum({super.key});
@@ -23,30 +21,29 @@ class grandegyptianmuseum extends StatelessWidget {
               fontSize: 25.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,
-
             ),
           ),
           centerTitle: true,
           actions: [
             PopupMenuButton(
-              // add icon, by default "3 dot" icon
-              // icon: Icon(Icons.book)
+                // add icon, by default "3 dot" icon
+                // icon: Icon(Icons.book)
                 itemBuilder: (context) {
-                  return [
-                    const PopupMenuItem<int>(
-                      value: 0,
-                      child: Text("Favourite page"),
-                    ),
-                    const PopupMenuItem<int>(
-                      value: 1,
-                      child: Text("History page"),
-                    ),
-                    const PopupMenuItem<int>(
-                      value: 2,
-                      child: Text("Logout"),
-                    ),
-                  ];
-                }, onSelected: (value) {
+              return [
+                const PopupMenuItem<int>(
+                  value: 0,
+                  child: Text("Favourite page"),
+                ),
+                const PopupMenuItem<int>(
+                  value: 1,
+                  child: Text("History page"),
+                ),
+                const PopupMenuItem<int>(
+                  value: 2,
+                  child: Text("Logout"),
+                ),
+              ];
+            }, onSelected: (value) {
               if (value == 0) {
                 {
                   Navigator.push(

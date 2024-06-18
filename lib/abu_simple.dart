@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'favourite.dart';
+import 'favorites/favourite.dart';
 import 'history.dart';
 import 'home.dart';
 import 'scaninng.dart';

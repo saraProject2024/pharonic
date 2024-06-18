@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_card/image_card.dart';
+import 'package:pharonic/PlaceDetails/place_details.dart';
+import 'package:pharonic/models/place_model.dart';
 import 'package:pharonic/services/firebase_service.dart';
 
 import 'abu_simple.dart';
-import 'favourite.dart';
+import 'favorites/favourite.dart';
 import 'grandegyption_museum.dart';
 import 'history.dart';
 import 'pyramids.dart';
@@ -19,7 +21,7 @@ import 'templet.dart';
 
 class Home extends StatefulWidget {
   static const pageId = "home";
-  List<dynamic> places = [];
+  List<PlaceModel> places = [];
 
   Home({super.key});
 
@@ -675,32 +677,7 @@ class _HomeState extends State<Home> {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: widget.places.length,
-                    itemBuilder: (context, idx) {
-                      return GestureDetector(
-                        onTap: () {
-                          //TODO: add navigator to the result deatils page
-                        },
-                        child: Container(
-                          child: Row(
-                            children: [
-                              Image.network(
-                                widget.places[idx]['image'],
-                                width: 100,
-                                height: 100,
-                              ),
-                              SizedBox(
-                                width: 20,
-                              ),
-                              Text(widget.places[idx]['title'])
-                            ],
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                  child: SearchResultList(widget: widget),
                 ),
               );
             } else {
@@ -712,6 +689,77 @@ class _HomeState extends State<Home> {
           },
         )
       ]),
+    );
+  }
+}
+
+class SearchResultList extends StatelessWidget {
+  const SearchResultList({
+    super.key,
+    required this.widget,
+  });
+
+  final Home widget;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      padding: EdgeInsets.zero,
+      shrinkWrap: true,
+      itemCount: widget.places.length,
+      itemBuilder: (context, idx) {
+        return GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (
+                  context,
+                ) =>
+                    PlaceDetailView(place: widget.places[idx]),
+              ),
+            );
+          },
+          child: Container(
+            margin: EdgeInsets.all(14),
+            width: double.infinity,
+            height: 100,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                gradient: LinearGradient(colors: [
+                  Colors.amber.withOpacity(0.6),
+                  Colors.transparent,
+                  Colors.amber.withOpacity(0.5),
+                ], begin: Alignment.topLeft, end: Alignment.bottomRight)),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.network(
+                      widget.places[idx].image,
+                      height: 80,
+                    ),
+                  ),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Expanded(
+                    child: Text(
+                      widget.places[idx].title,
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        );
+      },
     );
   }
 }
