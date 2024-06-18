@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pharonic/home.dart';
+import 'package:pharonic/home/home.dart';
 import 'package:pharonic/services/firebase_service.dart';
 
 import 'login.dart';

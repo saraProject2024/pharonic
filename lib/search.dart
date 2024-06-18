@@ -6,7 +6,7 @@ import 'package:pharonic/services/firebase_service.dart';
 
 import 'favorites/favourite.dart';
 import 'history.dart';
-import 'home.dart';
+import 'home/home.dart';
 import '../scaninng.dart';
 import 'started.dart';
 

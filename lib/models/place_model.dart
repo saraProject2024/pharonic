@@ -1,4 +1,5 @@
 class PlaceModel {
+  final String id;
   final String country;
   final String description;
   final String image;
@@ -6,6 +7,7 @@ class PlaceModel {
   final String title;
 
   PlaceModel({
+    required this.id,
     required this.country,
     required this.description,
     required this.image,

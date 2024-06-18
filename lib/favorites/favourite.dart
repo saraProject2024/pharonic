@@ -7,7 +7,7 @@ import 'package:pharonic/services/firebase_service.dart';
 import '../../abu_simple.dart';
 import '../grandegyption_museum.dart';
 import '../history.dart';
-import '../home.dart';
+import '../home/home.dart';
 import '../pyramids.dart';
 import '../scaninng.dart';
 import '../search.dart';

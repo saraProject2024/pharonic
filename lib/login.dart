@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../forget_password.dart';
-import '../home.dart';
+import 'home/home.dart';
 import '../register.dart';
 
 class loginScreen extends StatelessWidget {
@@ -124,15 +124,17 @@ class loginScreen extends StatelessWidget {
                           child: MaterialButton(
                             onPressed: () async {
                               try {
-                                final credential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-                                    email: emailcontroller.text,
-                                    password: passwordcontroller.text,
+                                final credential = await FirebaseAuth.instance
+                                    .signInWithEmailAndPassword(
+                                  email: emailcontroller.text,
+                                  password: passwordcontroller.text,
                                 );
                               } on FirebaseAuthException catch (e) {
                                 if (e.code == 'user-not-found') {
                                   print('No user found for that email.');
                                 } else if (e.code == 'wrong-password') {
-                                  print('Wrong password provided for that user.');
+                                  print(
+                                      'Wrong password provided for that user.');
                                 }
                               }
 
@@ -160,9 +162,8 @@ class loginScreen extends StatelessWidget {
                           height: 20.0,
                         ),
                         Center(
-                          child:                        TextButton(
-                            onPressed: ()
-                            {
+                          child: TextButton(
+                            onPressed: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -173,14 +174,13 @@ class loginScreen extends StatelessWidget {
                               'Forgot password..!',
                               style: GoogleFonts.oxanium(
                                 color: Colors.white,
-
                               ),
                             ),
                           ),
-
                         ),
-                        SizedBox(height: 20.0,),
-
+                        SizedBox(
+                          height: 20.0,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

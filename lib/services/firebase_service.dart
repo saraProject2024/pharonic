@@ -18,7 +18,8 @@ class FirebaseService {
   }
 
   static void createUserDoc(String fName, String lName, String email) {
-    firestore.collection('users').add({
+    String? currentUserId = currentUser?.uid;
+    firestore.collection('users').doc(currentUserId).set({
       "email": email,
       "f_name": fName,
       "l_name": lName,
@@ -27,11 +28,13 @@ class FirebaseService {
   }
 
   void toggleFavorite(String placeId) async {
+    log(placeId);
     if (currentUser == null) return;
     String? currentUserId = currentUser?.uid;
+    log(currentUserId.toString());
     final userDoc = await firestore.collection('user').doc(currentUserId).get();
     final currentUserData = userDoc.data();
-    List<String> favs = currentUserData!['favs'];
+    List<String> favs = currentUserData?['favs'] ?? [];
     if (favs.contains(placeId)) {
       favs.remove(placeId);
     } else {
@@ -55,6 +58,7 @@ class FirebaseService {
     for (var doc in result.docs) {
       final data = doc.data();
       final newPlace = PlaceModel(
+        id: doc.id,
         country: data['country'],
         description: data['description'],
         image: data['image'],
@@ -69,19 +73,19 @@ class FirebaseService {
     return resultPlaces;
   }
 
-  Future<List<PlaceModel>> getAllPlaces(String searchTerm) async {
-    String lowerSearchTerm = searchTerm.toLowerCase();
+  Future<List<PlaceModel>> getAllPlaces() async {
     final result = await firestore.collection('places').get();
     List<PlaceModel> resultPlaces = [];
 
     for (var doc in result.docs) {
       final data = doc.data();
       final newPlace = PlaceModel(
-        country: data['country'],
-        description: data['description'],
-        image: data['image'],
-        searchable: data['searchable'],
-        title: data['title'],
+        id: doc.id,
+        country: data['country'] ?? '',
+        description: data['description'] ?? '',
+        image: data['image'] ?? '',
+        searchable: data['searchable'] ?? '',
+        title: data['title'] ?? '',
       );
       resultPlaces.add(newPlace);
     }
@@ -93,6 +97,7 @@ class FirebaseService {
     final placeDoc = await firestore.collection('places').doc(placeId).get();
     final placeData = placeDoc.data();
     final placeObject = PlaceModel(
+      id: placeId,
       country: placeData?['country'],
       description: placeData?['description'],
       image: placeData?['image'],

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'favorites/favourite.dart';
 import 'history.dart';
-import 'home.dart';
+import 'home/home.dart';
 import 'scaninng.dart';
 import 'search.dart';
 import 'started.dart';

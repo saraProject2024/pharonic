@@ -5,7 +5,7 @@ import 'package:image_card/image_card.dart';
 import '../abu_simple.dart';
 import 'favorites/favourite.dart';
 import 'grandegyption_museum.dart';
-import 'home.dart';
+import 'home/home.dart';
 import 'pyramids.dart';
 import 'scaninng.dart';
 import 'search.dart';

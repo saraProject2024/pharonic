@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:pharonic/home.dart';
+import 'package:pharonic/home/home.dart';
 import 'package:pharonic/services/firebase_service.dart';
 
 import 'started.dart';
