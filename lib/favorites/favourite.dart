@@ -81,10 +81,7 @@ class favourite extends StatelessWidget {
                 const SizedBox(
                   height: 40.0,
                 ),
-                Expanded(
-                    child: FavoritesList(
-                  placeIds: FirebaseService.favouritePlaces,
-                )),
+                Expanded(child: FavoritesList()),
                 Container(
                   width: 380.0,
                   height: 75.0,

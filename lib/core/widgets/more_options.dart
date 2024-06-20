@@ -47,6 +47,13 @@ class MoreOptions extends StatelessWidget {
       } else if (value == 2) {
         {
           Auth().signOut();
+
+          {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Started()),
+            );
+          }
         }
       }
     });

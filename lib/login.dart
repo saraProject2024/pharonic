@@ -125,7 +125,7 @@ class loginScreen extends StatelessWidget {
                           child: MaterialButton(
                             onPressed: () async {
                               try {
-                                Auth().signInWithEmailAndPassword(
+                                await Auth().signInWithEmailAndPassword(
                                   email: emailcontroller.text,
                                   password: passwordcontroller.text,
                                 );

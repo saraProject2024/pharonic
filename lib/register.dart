@@ -244,7 +244,7 @@ class Register extends StatelessWidget {
                           child: MaterialButton(
                             onPressed: () async {
                               try {
-                                Auth().createUserWithEmailAndPassword(
+                                await Auth().createUserWithEmailAndPassword(
                                     email: emailAddress.text,
                                     password: passwordcontroller.text,
                                     fName: firstname.text,

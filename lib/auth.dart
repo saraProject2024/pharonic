@@ -16,7 +16,7 @@ class Auth {
       email: email,
       password: password,
     );
-    logger.log(user.user!.uid.toString());
+    await Future.delayed(Duration(seconds: 1));
   }
 
   Future<void> createUserWithEmailAndPassword(
@@ -38,6 +38,7 @@ class Auth {
       "l_name": lName,
       "favs": [],
     });
+    await Future.delayed(Duration(seconds: 1));
   }
 
   Future<void> signOut() async {

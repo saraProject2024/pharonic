@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:image_card/image_card.dart';
+import 'package:pharonic/PlaceDetails/place_details.dart';
 import 'package:pharonic/auth.dart';
 import 'package:pharonic/models/place_model.dart';
 import 'package:pharonic/services/firebase_service.dart';
@@ -54,12 +55,24 @@ class _TrendingPlacesListState extends State<TrendingPlacesList> {
                       return Padding(
                         padding: const EdgeInsets.only(right: 15),
                         child: Center(
-                          child: TrendingPlaceCard(
-                            country: currentPlace.country,
-                            image: currentPlace.image,
-                            isFavourite: isFavourite,
-                            placeId: currentPlace.id,
-                            title: currentPlace.title,
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (
+                                    context,
+                                  ) =>
+                                      PlaceDetailView(place: currentPlace),
+                                ),
+                              );
+                            },
+                            child: TrendingPlaceCard(
+                              country: currentPlace.country,
+                              image: currentPlace.image,
+                              isFavourite: isFavourite,
+                              placeId: currentPlace.id,
+                              title: currentPlace.title,
+                            ),
                           ),
                         ),
                       );

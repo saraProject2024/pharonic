@@ -28,10 +28,9 @@ class FirebaseService {
   }
 
   void toggleFavorite(String placeId) async {
-    log(placeId);
     if (currentUser == null) return;
     String? currentUserId = currentUser?.uid;
-    log(currentUserId.toString());
+
     final userDoc =
         await firestore.collection('users').doc(currentUserId).get();
     final currentUserData = userDoc.data();
@@ -72,8 +71,6 @@ class FirebaseService {
       );
       resultPlaces.add(newPlace);
     }
-
-    log("search done ${resultPlaces.length}");
 
     return resultPlaces;
   }
