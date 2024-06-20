@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pharonic/auth.dart';
 import 'package:pharonic/home/home.dart';
 import 'package:pharonic/services/firebase_service.dart';
 
@@ -243,15 +244,11 @@ class Register extends StatelessWidget {
                           child: MaterialButton(
                             onPressed: () async {
                               try {
-                                final credential = await FirebaseAuth.instance
-                                    .createUserWithEmailAndPassword(
-                                  email: emailAddress.text,
-                                  password: passwordcontroller.text,
-                                );
-
-                                FirebaseService.createUserDoc(firstname.text,
-                                    lastname.text, emailAddress.text);
-
+                                Auth().createUserWithEmailAndPassword(
+                                    email: emailAddress.text,
+                                    password: passwordcontroller.text,
+                                    fName: firstname.text,
+                                    lName: lastname.text);
                                 Navigator.of(context)
                                     .pushReplacementNamed(Home.pageId);
                               } on FirebaseAuthException catch (e) {
@@ -262,7 +259,8 @@ class Register extends StatelessWidget {
                                       'The account already exists for that email.');
                                 }
                               } catch (e) {
-                                print(e);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text("Error happened")));
                               }
                               if (formkey.currentState!.validate()) {
                                 print(firstname.text);

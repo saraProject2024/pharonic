@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:pharonic/home/home.dart';
 import 'package:pharonic/services/firebase_service.dart';
+import 'package:pharonic/widget_tree.dart';
 
 import 'started.dart';
 
@@ -28,22 +29,8 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    FirebaseService.getFav();
-    FirebaseAuth.instance.authStateChanges().listen((User? user) {
-      if (user == null) {
-        print('=======================User is currently signed out!');
-      } else {
-        print('=======================User is signed in!');
-      }
-    });
-
-    // TODO: implement initState  +++++
-    super.initState();
-  }
-
   // This widget is the root of your application.
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -51,7 +38,7 @@ class _MyAppState extends State<MyApp> {
         Home.pageId: (context) => Home(),
       },
       debugShowCheckedModeBanner: false,
-      home: Started(),
+      home: const WidgetTree(),
       // home: Home(),
     );
   }

@@ -4,8 +4,13 @@ import 'package:pharonic/templet.dart';
 
 class FavouriteCard extends StatelessWidget {
   final String placeId;
+  final bool isFavorite;
 
-  const FavouriteCard({super.key, required this.placeId});
+  const FavouriteCard({
+    super.key,
+    required this.placeId,
+    required this.isFavorite,
+  });
 
   @override
   Widget build(BuildContext context) {

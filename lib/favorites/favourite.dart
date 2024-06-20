@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:image_card/image_card.dart';
+import 'package:pharonic/core/widgets/more_options.dart';
 import 'package:pharonic/services/firebase_service.dart';
 
 import '../../abu_simple.dart';
@@ -30,48 +31,7 @@ class favourite extends StatelessWidget {
               )),
           centerTitle: true,
           actions: [
-            PopupMenuButton(
-                // add icon, by default "3 dot" icon
-                // icon: Icon(Icons.book)
-                itemBuilder: (context) {
-              return [
-                const PopupMenuItem<int>(
-                  value: 0,
-                  child: Text("Favourite page"),
-                ),
-                const PopupMenuItem<int>(
-                  value: 1,
-                  child: Text("History page"),
-                ),
-                const PopupMenuItem<int>(
-                  value: 2,
-                  child: Text("Logout"),
-                ),
-              ];
-            }, onSelected: (value) {
-              if (value == 0) {
-                {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => favourite()),
-                  );
-                }
-              } else if (value == 1) {
-                {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => History()),
-                  );
-                }
-              } else if (value == 2) {
-                {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Started()),
-                  );
-                }
-              }
-            }),
+            MoreOptions(),
           ],
           backgroundColor: Colors.transparent,
           elevation: 0.0),

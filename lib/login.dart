@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pharonic/auth.dart';
 
 import '../forget_password.dart';
 import 'home/home.dart';
@@ -124,8 +125,7 @@ class loginScreen extends StatelessWidget {
                           child: MaterialButton(
                             onPressed: () async {
                               try {
-                                final credential = await FirebaseAuth.instance
-                                    .signInWithEmailAndPassword(
+                                Auth().signInWithEmailAndPassword(
                                   email: emailcontroller.text,
                                   password: passwordcontroller.text,
                                 );
@@ -136,6 +136,9 @@ class loginScreen extends StatelessWidget {
                                   print(
                                       'Wrong password provided for that user.');
                                 }
+                              } catch (e) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text("Error happened")));
                               }
 
                               if (formkey.currentState!.validate()) {

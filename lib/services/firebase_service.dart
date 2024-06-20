@@ -11,7 +11,7 @@ final currentUser = FirebaseAuth.instance.currentUser;
 class FirebaseService {
   static List<String> favouritePlaces = [];
 
-  static void getFav() async {
+  Future getFav() async {
     final userDoc =
         await firestore.collection('users').doc(currentUser?.uid).get();
     favouritePlaces = userDoc.data()?['favs'] ?? [];
@@ -32,17 +32,22 @@ class FirebaseService {
     if (currentUser == null) return;
     String? currentUserId = currentUser?.uid;
     log(currentUserId.toString());
-    final userDoc = await firestore.collection('user').doc(currentUserId).get();
+    final userDoc =
+        await firestore.collection('users').doc(currentUserId).get();
     final currentUserData = userDoc.data();
-    List<String> favs = currentUserData?['favs'] ?? [];
+    final favs = currentUserData?['favs'] ?? [];
+    print(currentUserData);
     if (favs.contains(placeId)) {
       favs.remove(placeId);
     } else {
       favs.add(placeId);
     }
+    final stringFavs =
+        (favs as List<dynamic>).map((el) => el.toString()).toList();
+    favouritePlaces = stringFavs;
 
     firestore.collection('users').doc(currentUserId).update({
-      favs: favs,
+      "favs": favs,
     });
   }
 
